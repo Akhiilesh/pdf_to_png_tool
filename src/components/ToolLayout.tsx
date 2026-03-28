@@ -62,7 +62,7 @@ export default function ToolLayout({
       sx={{ backgroundColor: 'background.default' }}
     >
       <Helmet>
-        <title>{`${toolTitle} - OmniTools`}</title>
+        <title>{`${toolTitle} - Cognex`}</title>
       </Helmet>
       <Box width={'85%'}>
         <ToolHeader
@@ -73,17 +73,6 @@ export default function ToolLayout({
           path={fullPath}
         />
         {children}
-        <Separator backgroundColor="#5581b5" margin="50px" />
-        <AllTools
-          title={t('translation:toolLayout.allToolsTitle', '', {
-            type: capitalizeFirstLetter(
-              getToolsByCategory([], t).find(
-                (category) => category.type === type
-              )!.title
-            )
-          })}
-          toolCards={otherCategoryTools}
-        />
       </Box>
     </Box>
   );

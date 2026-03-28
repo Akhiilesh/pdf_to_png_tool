@@ -1,6 +1,5 @@
 import { Box, Button, Stack, styled, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import ToolBreadcrumb from './ToolBreadcrumb';
 import { capitalizeFirstLetter } from '../utils/string';
 import Grid from '@mui/material/Grid';
 import { Icon, IconifyIcon } from '@iconify/react';
@@ -99,18 +98,6 @@ export default function ToolHeader({
   const [bookmarked, setBookmarked] = useState<boolean>(isBookmarked(path));
   return (
     <Box my={4}>
-      <ToolBreadcrumb
-        items={[
-          { title: 'All tools', link: '/' },
-          {
-            title: getToolsByCategory([], t).find(
-              (category) => category.type === type
-            )!.rawTitle,
-            link: '/categories/' + type
-          },
-          { title }
-        ]}
-      />
       <Grid mt={1} container spacing={2}>
         <Grid item xs={12} md={8}>
           <Stack direction={'row'} spacing={2} alignItems={'center'}>

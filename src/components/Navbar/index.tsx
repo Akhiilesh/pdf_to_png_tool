@@ -5,8 +5,6 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from 'assets/logo.png';
-import logoWhite from 'assets/logo-white.png';
 import {
   Drawer,
   List,
@@ -16,7 +14,8 @@ import {
   Stack,
   Select,
   MenuItem,
-  FormControl
+  FormControl,
+  Typography
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
@@ -154,11 +153,18 @@ const Navbar: React.FC<NavbarProps> = ({
           mx: { md: '50px', lg: '150px' }
         }}
       >
-        <Link to="/">
-          <img
-            src={theme.palette.mode === 'light' ? logo : logoWhite}
-            width={isMobile ? '120px' : '200px'}
-          />
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 800,
+              letterSpacing: '-1px',
+              color: 'primary.main',
+              textTransform: 'uppercase'
+            }}
+          >
+            Cognex
+          </Typography>
         </Link>
         {isMobile ? (
           <>
