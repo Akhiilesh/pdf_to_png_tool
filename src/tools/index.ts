@@ -1,52 +1,13 @@
-import { stringTools } from '../pages/tools/string';
-import { imageTools } from '../pages/tools/image';
 import { DefinedTool, ToolCategory, UserType } from './defineTool';
 import { capitalizeFirstLetter } from '@utils/string';
-import { numberTools } from '../pages/tools/number';
-import { videoTools } from '../pages/tools/video';
-import { audioTools } from 'pages/tools/audio';
-import { listTools } from '../pages/tools/list';
 import { Entries } from 'type-fest';
-import { jsonTools } from '../pages/tools/json';
-import { csvTools } from '../pages/tools/csv';
-import { timeTools } from '../pages/tools/time';
 import { IconifyIcon } from '@iconify/react';
 import { pdfTools } from '../pages/tools/pdf';
-import { xmlTools } from '../pages/tools/xml';
-import { convertersTools } from '../pages/tools/converters';
 import { TFunction } from 'i18next';
 import { FullI18nKey, I18nNamespaces } from '../i18n';
 
-const toolCategoriesOrder: ToolCategory[] = [
-  'image-generic',
-  'pdf',
-  'string',
-  'video',
-  'time',
-  'audio',
-  'json',
-  'list',
-  'csv',
-  'number',
-  'png',
-  'xml',
-  'gif',
-  'converters'
-];
-export const tools: DefinedTool[] = [
-  ...imageTools,
-  ...stringTools,
-  ...jsonTools,
-  ...pdfTools,
-  ...listTools,
-  ...csvTools,
-  ...videoTools,
-  ...numberTools,
-  ...timeTools,
-  ...audioTools,
-  ...xmlTools,
-  ...convertersTools
-];
+const toolCategoriesOrder: ToolCategory[] = ['pdf'];
+export const tools: DefinedTool[] = [...pdfTools];
 const categoriesConfig: {
   type: ToolCategory;
   title: FullI18nKey;
@@ -54,100 +15,14 @@ const categoriesConfig: {
   icon: IconifyIcon | string;
 }[] = [
   {
-    type: 'string',
-    icon: 'solar:text-bold-duotone',
-    value: 'translation:categories.string.description',
-    title: 'translation:categories.string.title'
-  },
-  {
-    type: 'png',
-    icon: 'ph:file-png-thin',
-    value: 'translation:categories.png.description',
-    title: 'translation:categories.png.title'
-  },
-  {
-    type: 'number',
-    icon: 'lsicon:number-filled',
-    value: 'translation:categories.number.description',
-    title: 'translation:categories.number.title'
-  },
-  {
-    type: 'gif',
-    icon: 'material-symbols-light:gif-rounded',
-    value: 'translation:categories.gif.description',
-    title: 'translation:categories.gif.title'
-  },
-  {
-    type: 'list',
-    icon: 'solar:list-bold-duotone',
-    value: 'translation:categories.list.description',
-    title: 'translation:categories.list.title'
-  },
-  {
-    type: 'json',
-    icon: 'lets-icons:json-light',
-    value: 'translation:categories.json.description',
-    title: 'translation:categories.json.title'
-  },
-  {
-    type: 'csv',
-    icon: 'material-symbols-light:csv-outline',
-    value: 'translation:categories.csv.description',
-    title: 'translation:categories.csv.title'
-  },
-  {
-    type: 'video',
-    icon: 'lets-icons:video-light',
-    value: 'translation:categories.video.description',
-    title: 'translation:categories.video.title'
-  },
-  {
     type: 'pdf',
     icon: 'tabler:pdf',
     value: 'translation:categories.pdf.description',
     title: 'translation:categories.pdf.title'
-  },
-  {
-    type: 'time',
-    icon: 'fluent-mdl2:date-time',
-    value: 'translation:categories.time.description',
-    title: 'translation:categories.time.title'
-  },
-  {
-    type: 'image-generic',
-    icon: 'material-symbols-light:image-outline-rounded',
-    value: 'translation:categories.image-generic.description',
-    title: 'translation:categories.image-generic.title'
-  },
-  {
-    type: 'audio',
-    icon: 'ic:twotone-audiotrack',
-    value: 'translation:categories.audio.description',
-    title: 'translation:categories.audio.title'
-  },
-  {
-    type: 'xml',
-    icon: 'mdi-light:xml',
-    value: 'translation:categories.xml.description',
-    title: 'translation:categories.xml.title'
-  },
-  {
-    type: 'converters',
-    icon: 'streamline-plump:convert-pdf-1',
-    value: 'translation:categories.converters.description',
-    title: 'translation:categories.converters.title'
   }
 ];
 const CATEGORIES_USER_TYPES_MAPPINGS: Partial<Record<ToolCategory, UserType>> =
   {
-    xml: 'developers',
-    csv: 'developers',
-    json: 'developers',
-    gif: 'generalUsers',
-    png: 'generalUsers',
-    'image-generic': 'generalUsers',
-    video: 'generalUsers',
-    audio: 'generalUsers',
     converters: 'generalUsers'
   };
 // Filter tools by user types

@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { Button, Box, CircularProgress, Typography } from '@mui/material';
 import ToolContent from '@components/ToolContent';
 import ToolPdfInput from '@components/input/ToolPdfInput';
 import { ToolComponentProps } from '@tools/defineTool';
 import { convertPdfToPngImages } from './service';
 import ToolMultiFileResult from '@components/result/ToolMultiFileResult';
+import { Icon } from '@iconify/react';
 
 type ImagePreview = {
   blob: Blob;
@@ -17,13 +19,13 @@ export default function PdfToPng({ title }: ToolComponentProps) {
   const [zipBlob, setZipBlob] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const compute = async (_: {}, file: File | null) => {
-    if (!file) return;
+  const handleConvert = async () => {
+    if (!input) return;
     setLoading(true);
     setImages([]);
     setZipBlob(null);
     try {
-      const { images, zipFile } = await convertPdfToPngImages(file);
+      const { images, zipFile } = await convertPdfToPngImages(input);
       setImages(images);
       setZipBlob(zipFile);
     } catch (err) {
@@ -39,31 +41,69 @@ export default function PdfToPng({ title }: ToolComponentProps) {
       input={input}
       setInput={setInput}
       initialValues={{}}
-      compute={compute}
+      compute={() => {}} // Dummy compute to avoid auto-triggering
       inputComponent={
-        <ToolPdfInput
-          value={input}
-          onChange={setInput}
-          accept={['application/pdf']}
-          title="Upload a PDF"
-        />
+        <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+          <ToolPdfInput
+            value={input}
+            onChange={(file) => {
+              setInput(file);
+              setImages([]);
+              setZipBlob(null);
+            }}
+            accept={['application/pdf']}
+            title="Upload your PDF"
+          />
+          {input && (
+            <Button
+              variant="contained"
+              size="large"
+              onClick={handleConvert}
+              disabled={loading}
+              startIcon={
+                !loading && (
+                  <Icon icon="solar:convert-to-png-bold-duotone" width={24} />
+                )
+              }
+              sx={{
+                py: 1.5,
+                px: 5,
+                fontSize: '1.2rem',
+                borderRadius: '50px',
+                boxShadow: '0 4px 14px 0 rgba(255, 140, 0, 0.39)',
+                '&:hover': {
+                  boxShadow: '0 6px 20px rgba(255, 140, 0, 0.23)'
+                }
+              }}
+            >
+              {loading ? (
+                <Box display="flex" alignItems="center" gap={1}>
+                  <CircularProgress size={20} color="inherit" />
+                  <Typography variant="button">Converting...</Typography>
+                </Box>
+              ) : (
+                'Convert to PNG'
+              )}
+            </Button>
+          )}
+        </Box>
       }
       resultComponent={
         <ToolMultiFileResult
-          title="Converted PNG Pages"
+          title="Conversion Results"
           value={images.map((img) => {
             return new File([img.blob], img.filename, { type: 'image/png' });
           })}
           zipFile={zipBlob}
           loading={loading}
-          loadingText="Converting PDF pages"
+          loadingText="Processing your PDF..."
         />
       }
       getGroups={null}
       toolInfo={{
-        title: 'Convert PDF pages into PNG images',
+        title: 'High-Quality PDF to PNG conversion',
         description:
-          'Upload your PDF and get each page rendered as a high-quality PNG. You can preview, download individually, or get all images in a ZIP.'
+          'Our Cognex tool transforms every page of your PDF into a vibrant, high-quality PNG image. Perfect for presentations, social media, or archival purposes.'
       }}
     />
   );

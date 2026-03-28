@@ -11,17 +11,30 @@ const sharedThemeOptions: ThemeOptions = {
 export const lightTheme = createTheme({
   ...sharedThemeOptions,
   palette: {
+    primary: {
+      main: '#FF8C00', // DarkOrange
+      light: '#FFB84D',
+      dark: '#E67E00',
+      contrastText: '#ffffff'
+    },
     background: {
-      default: '#F5F5FA',
-      hover: '#FAFAFD',
-      lightSecondary: '#EBF5FF',
-      darkSecondary: '#5581b5'
+      default: '#FFFAF0', // FloralWhite
+      paper: '#ffffff',
+      hover: '#FFF5E6',
+      lightSecondary: '#FFF0DB',
+      darkSecondary: '#FF8C00'
     }
   },
   components: {
     MuiButton: {
       styleOverrides: {
-        contained: { color: '#ffffff', backgroundColor: '#1976d2' }
+        contained: {
+          color: '#ffffff',
+          backgroundColor: '#FF8C00',
+          '&:hover': {
+            backgroundColor: '#E67E00'
+          }
+        }
       }
     }
   }
@@ -31,19 +44,31 @@ export const darkTheme = createTheme({
   ...sharedThemeOptions,
   palette: {
     mode: 'dark',
+    primary: {
+      main: '#FF8C00',
+      light: '#FFB84D',
+      dark: '#E67E00',
+      contrastText: '#ffffff'
+    },
     background: {
-      default: '#1C1F20',
-      paper: '#181a1b',
-      hover: '#1a1c1d',
-      lightSecondary: '#1E2021',
-      darkSecondary: '#3C5F8A'
+      default: '#1A1100', // Very dark orange/black
+      paper: '#261900',
+      hover: '#332200',
+      lightSecondary: '#402B00',
+      darkSecondary: '#FF8C00'
     },
     text: { primary: '#ffffff' }
   },
   components: {
     MuiButton: {
       styleOverrides: {
-        contained: { color: '#ffffff', backgroundColor: '#145ea8' }
+        contained: {
+          color: '#ffffff',
+          backgroundColor: '#FF8C00',
+          '&:hover': {
+            backgroundColor: '#FFB84D'
+          }
+        }
       }
     }
   }

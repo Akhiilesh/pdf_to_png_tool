@@ -1,6 +1,6 @@
 {
-  "name": "omni-tools",
-  "description": "This project offers a variety of online tools to help with everyday tasks, \nall available for free and open for community contributions",
+  "name": "cognex-pdf-to-png",
+  "description": "A high-quality PDF to PNG conversion tool by Cognex",
   "version": "0.1.0",
   "private": true,
   "author": {

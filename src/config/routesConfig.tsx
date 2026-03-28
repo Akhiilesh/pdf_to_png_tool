@@ -7,15 +7,11 @@ const ToolsByCategory = lazy(() => import('../pages/tools-by-category'));
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Home />
-  },
-  {
-    path: '/categories/:categoryName',
-    element: <ToolsByCategory />
+    element: <Navigate to="/pdf/pdf-to-png" />
   },
   {
     path: '*',
-    element: <Navigate to="404" />
+    element: <Navigate to="/pdf/pdf-to-png" />
   }
 ];
 
